@@ -23,7 +23,7 @@ services:
       VIRTUAL_HOST: mysquash.example.com
     ports:
       - 8090:8080/tcp
-    image: squashtest/squash-tm:1.19.1
+    image: squashtest/squash-tm
     links:
       - squash-tm-md:mysql
     volumes:
