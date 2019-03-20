@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  squash-tm-md:    
+    image: mariadb:10.2.22-bionic
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    volumes:
+      - "/var/lib/mysql-db:/var/lib/mysql" 
+    networks:
+      - db-network 
+      
+  squash-tm:
+    depends_on:
+      - squash-tm-md
+    environment:
+      MYSQL_ENV_MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_ENV_MYSQL_USER: ${DB_USER}
+      MYSQL_ENV_MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ENV_MYSQL_DATABASE: ${DB_DATABASE}
+      VIRTUAL_HOST: mysquash.example.com
+    ports:
+      - 8090:8080/tcp
+    image: squashtest/squash-tm:1.19.1
+    links:
+      - squash-tm-md:mysql
+    volumes:
+      - squash-tm-logs:/opt/squash-tm/logs
+      - squash-tm-plugins:/opt/squash-tm/plugins  
+    networks:
+      - nginx-proxy
+      - db-network
+  
+  nginx-proxy:
+    container_name: nginx
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - nginx-proxy
+      
+volumes:
+  squash-tm-logs:
+  squash-tm-plugins:
+
+networks:
+  nginx-proxy:
+  db-network:
