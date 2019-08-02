@@ -11,7 +11,7 @@ services:
       - "/var/lib/mysql-db:/var/lib/mysql" 
   
   squash-tm:
-    image: squashtest/squash-tm
+    image: squashtest/squash-tm:1.20.0
     depends_on:
       - squash-tm-md
     environment:
