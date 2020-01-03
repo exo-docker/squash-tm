@@ -176,5 +176,8 @@ if [[ "$DB_TYPE" != "h2" ]]; then
 
 fi
 
+# Fix Jasper Report problem in Docker
+sed -i.bck '/exec java/i DAEMON_ARGS="-Djava.awt.headless=true ${DAEMON_ARGS}"' startup.sh
+
 # Starting up squash-tm
 cd /opt/squash-tm/bin && ./startup.sh

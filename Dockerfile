@@ -13,6 +13,7 @@ RUN echo $SQUASH_TM_VERSION
 RUN apk add --update \
 	mysql-client \
 	postgresql-client \
+	ttf-dejavu \
 	curl && \
 	rm -f /var/cache/apk/*
 
