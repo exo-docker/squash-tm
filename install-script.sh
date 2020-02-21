@@ -37,7 +37,7 @@ if [ $MYSQL_EXIST -eq 0 ]; then
 	echo 'MYSQL is up '
    sleep 5
     DB_TYPE='mysql'
-    DB_HOST='mysql'
+    DB_HOST=${DB_HOST:-'mysql'}
     DB_PORT='3306'
     DB_DRIVER='org.gjt.mm.mysql.Driver'
     DB_USERNAME=${MYSQL_ENV_MYSQL_USER:-'root'}
@@ -63,7 +63,7 @@ elif [ $POSTRESQL_EXIST -eq 0 ]; then
 	echo 'POSTGRESQL is up'
      sleep 5
     DB_TYPE='postgresql'
-    DB_HOST='postgres'
+    DB_HOST=${DB_HOST:-'postgres'}
     DB_PORT='5432'
     DB_DRIVER='org.postgresql.Driver'
     DB_USERNAME=${POSTGRES_ENV_POSTGRES_USER:-'root'}
