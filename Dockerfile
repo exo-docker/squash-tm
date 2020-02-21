@@ -1,5 +1,5 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Quentin Dusser
+LABEL maintainer="eXo Platform <docker@exoplatform.com>"
 
 
 ARG SQUASH_TM_LATEST_VERSION='1.21.0'
