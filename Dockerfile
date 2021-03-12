@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine
 MAINTAINER Quentin Dusser
 
 
-ARG SQUASH_TM_LATEST_VERSION='1.21.0'
+ARG SQUASH_TM_LATEST_VERSION='1.22.1'
 ENV SQUASH_TM_VERSION=$SQUASH_TM_LATEST_VERSION
 ENV SQUASH_TM_URL="http://repo.squashtest.org/distribution/squash-tm-${SQUASH_TM_LATEST_VERSION}.RELEASE.tar.gz"
 
