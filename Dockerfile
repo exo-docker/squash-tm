@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine
 MAINTAINER Quentin Dusser
 
 
-ARG SQUASH_TM_LATEST_VERSION='1.22.1'
+ARG SQUASH_TM_LATEST_VERSION='3.0.2'
 ENV SQUASH_TM_VERSION=$SQUASH_TM_LATEST_VERSION
 ENV SQUASH_TM_URL="http://repo.squashtest.org/distribution/squash-tm-${SQUASH_TM_LATEST_VERSION}.RELEASE.tar.gz"
 
@@ -22,7 +22,7 @@ RUN curl -L ${SQUASH_TM_URL} | gunzip -c | tar x
 
 COPY install-script.sh ./install-script.sh
 
-RUN chmod +x ./install-script.sh 
+RUN chmod +x ./install-script.sh
 
 RUN chmod +rwx squash-tm/bin/startup.sh
 
